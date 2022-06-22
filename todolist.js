@@ -100,6 +100,10 @@ class TodoList {
     let list = this.todos.map((todo) => todo.toString()).join('\n');
     return `${title}\n${list}`;
   }
+
+  forEach(callback) {
+    this.todos.forEach(callback);
+  }
 }
 
 let list = new TodoList("Today's Todos");
@@ -118,7 +122,7 @@ list.add(todo4);
 list.add(todo5);
 list.add(todo6);
 
-console.log(`${list}`);
+list.forEach((todo) => console.log(todo.toString()));
 
 // console.log(list.first());
 // console.log(list.last());
