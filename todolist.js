@@ -104,6 +104,17 @@ class TodoList {
   forEach(callback) {
     this.todos.forEach(callback);
   }
+
+  filter(callback) {
+    let newList = new TodoList(this.title);
+    this.forEach((todo) => {
+      if (callback(todo)) {
+        newList.add(todo);
+      }
+    });
+
+    return newList;
+  }
 }
 
 let list = new TodoList("Today's Todos");
@@ -122,7 +133,15 @@ list.add(todo4);
 list.add(todo5);
 list.add(todo6);
 
-list.forEach((todo) => console.log(todo.toString()));
+todo1.markDone();
+todo2.markDone();
+
+// let doneTodos = list.filter((todo) => todo.isDone());
+// console.log(doneTodos);
+
+console.log(list.filter((todo) => todo.isDone()).first());
+
+// list.forEach((todo) => console.log(todo.toString()));
 
 // console.log(list.first());
 // console.log(list.last());
