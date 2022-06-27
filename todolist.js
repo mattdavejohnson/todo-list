@@ -115,6 +115,37 @@ class TodoList {
 
     return newList;
   }
+
+  findByTitle(title) {
+    return this.filter((todo) => todo.getTitle() === title).first();
+  }
+
+  allDone() {
+    return this.filter((todo) => todo.isDone());
+  }
+
+  allNotDone() {
+    return this.filter((todo) => !todo.isDone());
+  }
+
+  markDone(title) {
+    let selection = this.findByTitle(title);
+    if (selection !== undefined) {
+      selection.markDone();
+    }
+  }
+
+  markAllDone() {
+    this.forEach((todo) => todo.markDone());
+  }
+
+  markAllUndone() {
+    this.forEach((todo) => todo.markUndone());
+  }
+
+  toArray() {
+    return this.todos.slice();
+  }
 }
 
 let list = new TodoList("Today's Todos");
@@ -133,13 +164,24 @@ list.add(todo4);
 list.add(todo5);
 list.add(todo6);
 
-todo1.markDone();
-todo2.markDone();
+console.log(list.toArray());
+
+// list.markAllDone();
+// console.log(list);
+
+// list.markAllUndone();
+// console.log(list);
+
+// todo1.markDone();
+// todo2.markDone();
+
+// console.log(list.allDone());
+// console.log(list.allNotDone());
 
 // let doneTodos = list.filter((todo) => todo.isDone());
 // console.log(doneTodos);
 
-console.log(list.filter((todo) => todo.isDone()).first());
+// console.log(list.filter((todo) => todo.isDone()).first());
 
 // list.forEach((todo) => console.log(todo.toString()));
 
